@@ -15,4 +15,5 @@ if(MSVC)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif(MSVC)
 
+#check for CMakeLists.txt files in subdirectory source (where your applications are)
 add_subdirectory(source)
