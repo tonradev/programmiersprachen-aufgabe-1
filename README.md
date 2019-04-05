@@ -4,11 +4,14 @@ Programmiersprachen: helloworld
 Aufgabenblatt 1
 
 ```
+#build the apps under linux
 mkdir build
 cd build
 cmake ..
-cd source
 make
+
+#run the apps
+cd source
 ./helloworld
 ./tests
 ```
