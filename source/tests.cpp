@@ -15,6 +15,20 @@ int gcd(int a, int b){
   return divisor;
 }
 
+// AUFGABE 1.9
+int checksum(int number){
+  int result = 0;
+  if (number < 0) {
+    number *= (-1);
+  }
+  while(number/10 > 0){
+    result += number%10;
+    number /= 10;
+  }
+  result += number%10;
+  return result;
+}
+
 // AUFGABE 1.10
 int sum_multiples(int limit){
   int result = 0;
@@ -26,6 +40,12 @@ int sum_multiples(int limit){
     }
   }
   return result;
+}
+
+// AUFGABE 1.11
+double fract(double number){
+  int intpart = (int) number;
+  return number - intpart;
 }
 
 // AUFGABE 1.12
@@ -73,11 +93,25 @@ TEST_CASE("describe_gcd", "[gcd]")
   REQUIRE(gcd(3,7) == 1);
 }
 
+TEST_CASE("describe_checksum", "[checksum]")
+{
+  REQUIRE(checksum(-2048) == 14);
+  REQUIRE(checksum(489236) == 32);
+  REQUIRE(checksum(121682) == 20);
+}
+
 TEST_CASE("describe_sum_multiples", "[sum_multiples]")
 {
   REQUIRE(sum_multiples(1000) == 234168);
   REQUIRE(sum_multiples(11) == 33);
   REQUIRE(sum_multiples(2) == 0);
+}
+
+TEST_CASE("describe_fract", "[fract]")
+{
+  REQUIRE(fract(1.23456) == Approx(0.23456));
+  REQUIRE(fract(935.0548) == Approx(0.0548));
+  REQUIRE(fract(-19.993) == Approx(-0.993));
 }
 
 TEST_CASE("Test calc_volume", "[calc_volume]")
