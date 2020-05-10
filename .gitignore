@@ -33,6 +33,7 @@
 
 # build directory
 [Bb]uild
+.vscode
 
 CMakeCache.txt
 cmake_install.cmake
