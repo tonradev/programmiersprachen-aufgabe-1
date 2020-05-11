@@ -5,6 +5,10 @@
 
 // AUFGABE 1.8
 int gcd(int a, int b){
+  if (a <= 0 || b <= 0) {
+    std::cout << "Ungueltiger Parameter.\n";
+    return -1;
+  }
   int divisor = a;
   if (a > b) {
     divisor = b;
@@ -31,6 +35,10 @@ int checksum(int number){
 
 // AUFGABE 1.10
 int sum_multiples(int limit){
+  if (limit <= 0) {
+    std::cout << "Ungueltiger Parameter.\n";
+    return -1;
+  }
   int result = 0;
   for (int i = 1; i <= limit; ++i)
   {
@@ -50,10 +58,18 @@ double fract(double number){
 
 // AUFGABE 1.12
 float calc_volume(float radius, float height){
+  if (radius <= 0 || height <= 0) {
+    std::cout << "Ungueltiger Parameter.\n";
+    return -1.f;
+  }
   return M_PI*std::pow(radius, 2)*height;
 }
 
 float calc_surface(float radius, float height){
+  if (radius <= 0 || height <= 0) {
+    std::cout << "Ungueltiger Parameter.\n";
+    return -1.f;
+  }
   return (2*M_PI*std::pow(radius, 2))+(2*M_PI*radius*height);
 }
 
@@ -90,7 +106,7 @@ TEST_CASE("describe_gcd", "[gcd]")
 {
   REQUIRE(gcd(2,4) == 2);
   REQUIRE(gcd(9,6) == 3);
-  REQUIRE(gcd(3,7) == 1);
+  REQUIRE(gcd(-3,7) == -1);
 }
 
 TEST_CASE("describe_checksum", "[checksum]")
@@ -104,7 +120,7 @@ TEST_CASE("describe_sum_multiples", "[sum_multiples]")
 {
   REQUIRE(sum_multiples(1000) == 234168);
   REQUIRE(sum_multiples(11) == 33);
-  REQUIRE(sum_multiples(2) == 0);
+  REQUIRE(sum_multiples(-3) == -1);
 }
 
 TEST_CASE("describe_fract", "[fract]")
@@ -117,14 +133,14 @@ TEST_CASE("describe_fract", "[fract]")
 TEST_CASE("Test calc_volume", "[calc_volume]")
 {
   REQUIRE(calc_volume(3, 4) == Approx(113.097));
-  REQUIRE(calc_volume(7, 9) == Approx(1385.442));
+  REQUIRE(calc_volume(-7, 9.5) == Approx(-1.f));
   REQUIRE(calc_volume(0.5, 5.3) == Approx(4.16261));
 }
 
 TEST_CASE("Test calc_surface", "[calc_surface]")
 {
   REQUIRE(calc_surface(3, 7) == Approx(188.4955));
-  REQUIRE(calc_surface(6, 12) == Approx(678.584));
+  REQUIRE(calc_surface(-6, 12) == Approx(-1.f));
   REQUIRE(calc_surface(2.25, 10) == Approx(173.180));
 }
 
